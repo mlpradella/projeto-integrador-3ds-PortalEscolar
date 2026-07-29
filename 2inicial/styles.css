@@ -1,0 +1,53 @@
+body {
+    background-color: #213657;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    font-family: "Emblema One";
+    color: #FFF3A2;
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 35px;
+    font-size: 16.89px;
+}
+
+.container {
+    background-color: #213657;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 25px;
+    border-radius: 12px;
+    position: relative;
+    text-align: center;
+}
+
+.menu-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.botao {
+    background-color: #FFF3A2;
+    color: #213657;
+    text-decoration: none;
+    padding: 20px 24px;
+    border-radius: 54px;
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    font-family: "Emblema One";
+}
+
+.botao:hover {
+    background-color: #FFF3A2;
+}
+
+.botao:active {
+    transform: scale(0.98);
+}
