@@ -1,0 +1,76 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#213657;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    width:900px;
+    background:#213657;
+    padding:30px;
+    border:3px solid #FFF3A2;
+    border-radius:15px;
+}
+
+h1{
+    color:#FFF3A2;
+    text-align:center;
+    margin-bottom:25px;
+    font-size:40px;
+}
+
+.dias-semana{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.dias-semana div{
+    color:#FFF3A2;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.calendario{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+.vazio{
+    visibility:hidden;
+}
+
+.dia{
+    background:#FFF3A2;
+    color:#213657;
+    border:none;
+    border-radius:10px;
+    height:70px;
+    font-size:24px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dia:hover{
+    background:#ffe36a;
+    transform:scale(1.05);
+}
+
+.dia.selecionado{
+    background:white;
+    color:#213657;
+    border:3px solid #FFF3A2;
+}
