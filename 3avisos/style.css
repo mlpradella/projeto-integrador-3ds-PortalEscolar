@@ -1,0 +1,49 @@
+body{
+    background-color:#213657 ;
+}
+
+h1{
+    color: #FFF3A2;
+    text-align: center;
+    font-family: "Emblema One";
+}
+
+.caixas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 8px;
+}
+
+.card {
+    width: 320px;
+    min-height: 130px;
+    background: #23395d;
+    color: #f7e08a;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.card a {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    color: #f7e08a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botao{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 55px;
+    background-color: #f7e08a;
+    color: #23395d;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+}
