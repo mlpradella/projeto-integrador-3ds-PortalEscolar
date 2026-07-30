@@ -1,0 +1,117 @@
+body {
+    background-color: #213657;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    font-family: "Emblema One";
+    color: #FFF3A2;
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 35px;
+    font-size: 13px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #213657;
+    width: 100%;
+    max-width: 400px;
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: center;
+    font-family: "Emblema One";
+}
+
+.titulo {
+    color: #FFF3A2;
+    font-size: 15px;
+    margin-bottom: 35px;
+    margin-top: -8px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.campo-texto {
+    background-color: #FFF3A2;
+    color: #9b9b9b;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
+    width: 100%;
+}
+
+.formulario .campo-texto:nth-child(1) {
+    width: 90%;
+    border-radius: 40px;
+}
+
+.formulario .campo-texto:nth-child(2) {
+    width: 75%;
+    border-radius: 35px;
+}
+
+.formulario .campo-texto:nth-child(3) {
+    width: 60%;
+    border-radius: 30px;
+}
+
+.campo-texto::placeholder {
+    color: #9b9b9b;
+    opacity: 0.5;
+}
+
+.botao-enviar,
+.botao-voltar {
+    background-color: #FFF3A2;
+    color: #213657;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: inherit;
+    display: block;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.botao-enviar {
+    width: 70%;
+    border-radius: 35px;
+}
+
+.botao-voltar {
+    width: 60%;
+    border-radius: 30px;
+}
+
+.campo-texto:focus {
+    background-color: #FFF3A2;
+}
+
+.botao-enviar:hover,
+.botao-voltar:hover {
+    background-color: #FFF3A2;
+}
+
+.botao-enviar:active,
+.botao-voltar:active {
+    transform: scale(0.98);
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendar Música</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Emblema+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="titulo">
+            <h1>Qual o nome e artista da música?</h1>
+        </div>
+
+        <form class="formulario">
+            <input type="text" name="musica" placeholder="Música" required class="campo-texto">
+            
+            <input type="text" name="artista" placeholder="Artista" required class="campo-texto">
+
+            <input type="text" name="minutagem" placeholder="Minutagem (MM:SS)" required 
+                   pattern="^[0-5]?[0-9]:[0-5][0-9]$" 
+                   title="Digite no formato de minutos e segundos. Ex: 03:45" 
+                   class="campo-texto">
+
+            <button type="submit" class="botao-enviar">Recomendar</button>
+            <a href="../2inicial/index.html" class="botao-voltar">Voltar</a>
+        </form>
+
+    </div>
+
+    <script>
+        document.querySelector('.formulario').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const dados = {
+                nome: document.querySelector('input[name="musica"]').value,
+                artista: document.querySelector('input[name="artista"]').value,
+                minutagem: document.querySelector('input[name="minutagem"]').value
+            };
+
+            try {
+                const resposta = await fetch('http://localhost:8080/api/musicas', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+
+                if (resposta.ok) {
+                    alert('Música recomendada com sucesso!');
+                    document.querySelector('.formulario').reset(); 
+                } else {
+                    const errosBackend = await resposta.json();
+                    alert('Erro de validação: ' + Object.values(errosBackend).join('\n'));
+                }
+            } catch (error) {
+                alert('O servidor Java está desligado ou a URL está incorreta.');
+            }
+        });
+    </script>
+</body>
+
+</html>
