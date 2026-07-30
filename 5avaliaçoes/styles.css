@@ -1,12 +1,12 @@
 body {
-    background-color: #133771;
+    background-color: #213657;
     text-align: center;
     color: #FFF3A2;
     font-family: "Emblema One";
 }
 h2 {
     text-align: start;
-    margin-top: 70px;
+    margin-top: 50px;
     height: 10px;
 }
 .container {
@@ -19,12 +19,12 @@ h2 {
     align-items: center;
 }
 .caixas {
-    background-color: #103c84;
+    background-color: #223b64;
     margin-top: 5px;
     width: 211px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 10px 10px rgba (0,0,0,0,15);
+    box-shadow:#355486;
     text-align: center;
     margin-left: 34px;
     color: #FFF3A2;
@@ -32,14 +32,19 @@ h2 {
 .botao-container {
     margin-top: 30px;
     max-width: 20px;
-    margin-left: 135px;
+    margin-left: 118px;
 }
 .botao {
-    display: inline-block;
-    background-color: #FFF3A2;
-    color: #103c84;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-family: 'bold';
+    background-color: #FFF3A2; 
+    color: #213657;              
+    border: none;  
+    font-family: "Emblema One";            
+    padding: 10px 20px;       
+    font-size: 16px;          
+    border-radius: 20px;        
+    cursor:pointer;   
 }
+.botao:hover {
+    background-color: #d4c668; 
+
+  }
