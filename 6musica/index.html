@@ -37,20 +37,20 @@
     <script>
         document.querySelector('.formulario').addEventListener('submit', async (e) => {
             e.preventDefault();
-
+    
             const dados = {
                 nome: document.querySelector('input[name="musica"]').value,
                 artista: document.querySelector('input[name="artista"]').value,
                 minutagem: document.querySelector('input[name="minutagem"]').value
             };
-
+    
             try {
                 const resposta = await fetch('http://localhost:8080/api/musicas', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(dados)
                 });
-
+    
                 if (resposta.ok) {
                     alert('Música recomendada com sucesso!');
                     document.querySelector('.formulario').reset(); 
@@ -59,10 +59,13 @@
                     alert('Erro de validação: ' + Object.values(errosBackend).join('\n'));
                 }
             } catch (error) {
-                alert('O servidor Java está desligado ou a URL está incorreta.');
+                alert('O servidor Java está desligado ou a URL está incorreta, por favor escreva a requisição novamente.');
+                
+                document.querySelector('.formulario').reset(); 
             }
         });
     </script>
+    
 </body>
 
 </html>
