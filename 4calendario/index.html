@@ -4,81 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário</title>
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="container">
+<div class="calendario">
 
     <h1>Calendário</h1>
 
-    <div class="dias-semana">
-        <div>Dom</div>
-        <div>Seg</div>
-        <div>Ter</div>
-        <div>Qua</div>
-        <div>Qui</div>
-        <div>Sex</div>
-        <div>Sáb</div>
+    <div class="semana">
+        <span>Dom</span>
+        <span>Seg</span>
+        <span>Ter</span>
+        <span>Qua</span>
+        <span>Qui</span>
+        <span>Sex</span>
+        <span>Sáb</span>
     </div>
 
-    <div class="calendario">
+    <div class="dias">
 
-        <!-- Espaços vazios -->
-        <div class="vazio"></div>
-        <div class="vazio"></div>
+        <div></div>
+        <div></div>
+        <div class="dia">1</div>
+        <div class="dia">2</div>
+        <div class="dia">3</div>
+        <div class="dia">4</div>
+        <div class="dia">5</div>
 
-        <button class="dia">1</button>
-        <button class="dia">2</button>
-        <button class="dia">3</button>
-        <button class="dia">4</button>
-        <button class="dia">5</button>
-        <button class="dia">6</button>
-        <button class="dia">7</button>
-        <button class="dia">8</button>
-        <button class="dia">9</button>
-        <button class="dia">10</button>
-        <button class="dia">11</button>
-        <button class="dia">12</button>
-        <button class="dia">13</button>
-        <button class="dia">14</button>
-        <button class="dia">15</button>
-        <button class="dia">16</button>
-        <button class="dia">17</button>
-        <button class="dia">18</button>
-        <button class="dia">19</button>
-        <button class="dia">20</button>
-        <button class="dia">21</button>
-        <button class="dia">22</button>
-        <button class="dia">23</button>
-        <button class="dia">24</button>
-        <button class="dia">25</button>
-        <button class="dia">26</button>
-        <button class="dia">27</button>
-        <button class="dia">28</button>
-        <button class="dia">29</button>
-        <button class="dia">30</button>
-        <button class="dia">31</button>
+        <div class="dia">6</div>
+        <div class="dia">7</div>
+        <div class="dia">8</div>
+        <div class="dia">9</div>
+        <div class="dia">10</div>
+        <div class="dia">11</div>
+        <div class="dia">12</div>
+
+        <div class="dia">13</div>
+        <div class="dia">14</div>
+        <div class="dia">15</div>
+        <div class="dia">16</div>
+        <div class="dia">17</div>
+        <div class="dia">18</div>
+        <div class="dia">19</div>
+
+        <div class="dia">20</div>
+        <div class="dia">21</div>
+        <div class="dia">22</div>
+        <div class="dia">23</div>
+        <div class="dia">24</div>
+        <div class="dia">25</div>
+        <div class="dia">26</div>
+
+        <div class="dia">27</div>
+        <div class="dia">28</div>
+        <div class="dia">29</div>
+        <div class="dia">30</div>
+        <div class="dia">31</div>
 
     </div>
+
+    <button class="btn-voltar">Voltar</button>
 
 </div>
-
-<script>
-const dias = document.querySelectorAll(".dia");
-
-dias.forEach(dia => {
-    dia.addEventListener("click", function(){
-
-        dias.forEach(item => item.classList.remove("selecionado"));
-
-        this.classList.add("selecionado");
-
-        alert("Você selecionou o dia " + this.innerText);
-    });
-});
-</script>
 
 </body>
 </html>

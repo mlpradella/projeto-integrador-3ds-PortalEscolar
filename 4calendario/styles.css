@@ -6,71 +6,88 @@
 }
 
 body{
-    background:#213657;
+    background:#2f2f2f;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
 }
 
-.container{
-    width:900px;
-    background:#213657;
-    padding:30px;
-    border:3px solid #FFF3A2;
-    border-radius:15px;
+.calendario{
+    width:300px;
+    height:660px;
+    background:#233B66;
+    border:3px solid #F8E68A;
+    border-radius:20px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
 }
 
 h1{
-    color:#FFF3A2;
+    color:#F8E68A;
     text-align:center;
-    margin-bottom:25px;
-    font-size:40px;
+    font-size:30px;
+    margin-bottom:18px;
 }
 
-.dias-semana{
+.semana{
     display:grid;
     grid-template-columns:repeat(7,1fr);
-    gap:10px;
-    margin-bottom:15px;
-}
-
-.dias-semana div{
-    color:#FFF3A2;
     text-align:center;
-    font-size:20px;
+    color:#F8E68A;
     font-weight:bold;
+    font-size:13px;
+    margin-bottom:10px;
 }
 
-.calendario{
+.dias{
     display:grid;
     grid-template-columns:repeat(7,1fr);
-    gap:10px;
-}
-
-.vazio{
-    visibility:hidden;
+    gap:6px;
+    justify-items:center;
 }
 
 .dia{
-    background:#FFF3A2;
-    color:#213657;
-    border:none;
+    width:34px;
+    height:58px;
+    background:#F8E68A;
+    color:#233B66;
     border-radius:10px;
-    height:70px;
-    font-size:24px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
 }
 
 .dia:hover{
-    background:#ffe36a;
+    background:#FFE15A;
     transform:scale(1.05);
 }
 
-.dia.selecionado{
-    background:white;
-    color:#213657;
-    border:3px solid #FFF3A2;
+.btn-voltar{
+    margin-top:25px;
+    align-self:center;
+    width:150px;
+    height:45px;
+    background:#F8E68A;
+    color:#233B66;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-voltar:hover{
+    background:#FFE15A;
+    transform:scale(1.05);
+}
+
+.btn-voltar:active{
+    transform:scale(.96);
 }
