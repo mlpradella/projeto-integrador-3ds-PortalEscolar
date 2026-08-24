@@ -19,12 +19,12 @@ h2 {
     align-items: center;
 }
 .caixas {
-    background-color: #23395d;
+    background-color: #2c4368;
     margin-top: 5px;
     width: 211px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba (0,0,0,0,3);
+    box-shadow: 0 4px 20px rgba (0,0,0,0,10);
     text-align: center;
     margin-left: 34px;
     color: #FFF3A2;
@@ -41,7 +41,7 @@ h2 {
     font-family: "Emblema One";            
     padding: 10px 20px;       
     font-size: 16px;          
-    border-radius: 20p x;        
+    border-radius: 100px;       
     cursor: pointer;   
 }
 .botao:hover {
