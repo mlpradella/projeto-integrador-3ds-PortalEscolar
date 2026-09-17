@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Abril Fatface', cursive;
+    background-color: #1b3252;
+    color: #FFF3A2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .card-container {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .titulo-pagina {
+    font-size: 2.5rem;
+    color: #FFF3A2;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  .card-info {
+    background-color: #213657;
+    width: 100%;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .label {
+    font-size: 1.3rem;
+    color: #FFF3A2;
+    margin-bottom: 4px;
+  }
+  
+  .label.espaco {
+    margin-top: 16px;
+  }
+  
+  .valor {
+    font-size: 1.2rem;
+    color: #FFF3A2;
+  }
+  
+  .acoes-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .btn-voltar {
+    background-color: #FFF3A2;
+    color: #213657;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 12px 45px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .btn-voltar:hover {
+    opacity: 0.9;
+  }
