@@ -67,3 +67,13 @@ input::placeholder{
 .botao:hover{
     background: #1b2f57;
 }
+
+.erro{
+    display: none;
+    color: #d32f2f;
+    background: #fff0a8;
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 260px;
+}

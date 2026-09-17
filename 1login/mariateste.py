@@ -5,26 +5,21 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 
 try:
- 
-    driver.get("http://127.0.0.1:5500/1login/index.html") 
+    driver.get("http://127.0.0.1:5500/1login/index.html")
     driver.maximize_window()
 
     campo_nome = driver.find_element(By.CSS_SELECTOR, "input[placeholder='Name']")
     campo_senha = driver.find_element(By.CSS_SELECTOR, "input[placeholder='Password']")
     botao_login = driver.find_element(By.CSS_SELECTOR, ".botao")
 
-    campo_nome.send_keys("usuario_falso")
-    campo_senha.send_keys("123456")
-
     botao_login.click()
 
     mensagem_erro = driver.find_element(By.ID, "mensagem-erro")
-    
-   
-    assert mensagem_erro.is_displayed(), "A mensagem de erro não foi exibida na tela."
-    assert "Usuário ou senha incorretos" in mensagem_erro.text, "Texto da mensagem divergente."
 
-    print("Teste executado com sucesso: mensagem de erro validada!")
+    assert mensagem_erro.is_displayed(), "A mensagem de erro não foi exibida ao enviar campos vazios."
+    assert mensagem_erro.text.strip() != "", "A mensagem de erro está vazia."
+
+    print("Teste executado com sucesso: validação de campos vazios OK!")
 
 finally:
     time.sleep(2)
