@@ -1,8 +1,9 @@
 body {
-    background-color: #23395d;
+    background-color: #1d3356;
     text-align: center;
     color: #FFF3A2;
     font-family: "Emblema One";
+    box-shadow: 0 4px 20px rgba (0,0,0,0,3);
 }
 h2 {
     text-align: start;
@@ -19,12 +20,12 @@ h2 {
     align-items: center;
 }
 .caixas {
-    background-color: #2c4368;
+    background-color: #23395d;
     margin-top: 5px;
     width: 211px;
     padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba (0,0,0,0,10);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba (0,0,0,0,3);
     text-align: center;
     margin-left: 34px;
     color: #FFF3A2;
@@ -36,7 +37,7 @@ h2 {
 }
 .botao {
    background-color: #FFF3A2; 
-    color: #213657;              
+    color: #23395d;              
     border: none;  
     font-family: "Emblema One";            
     padding: 10px 20px;       
