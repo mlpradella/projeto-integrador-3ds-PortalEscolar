@@ -4,10 +4,10 @@ from selenium.webdriver.common.by import By
 # Inicializa o navegador
 driver = webdriver.Chrome()
 
-# Abre o seu arquivo HTML local (ou um site na web)
+# Abre o arquivo HTML local
 driver.get(r"C:\Users\aluno\projeto-integrador-3ds-PortalEscolar\6musica\index.html")
 
-# Usa um seletor CSS do Selenium para achar um elemento estilizado no CSS
+# Usa um seletor CSS para achar um elemento estilizado no CSS
 elemento = driver.find_element(By.CSS_SELECTOR, ".sua-classe-css")
 
 # Extrai o texto ou valida propriedades do elemento HTML/CSS
