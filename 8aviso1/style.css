@@ -1,59 +1,91 @@
-body {
-    background-color: #213657; 
-    color: #FFF3A2; 
-    text-align: center;
-    align-items: center;
-    margin-top: 70px;
-    box-shadow: 0 4px 10px rgba (0,0,0,0,3);
-  }
-  .container {
-    font-family: "Emblema One";
-    background-color: #23395d;
-    padding: 30px;
-    border-radius: 10px;
-    width: 200px;
-    margin-left: 50px;
-    margin-top: 70px;
-    box-shadow: 0 4px 10px rgba (0,0,0,0,3);
-  }
-  h1 {
-    font-family: "Emblema One";
-    margin-bottom: 20px;
-    font-size: 30px;
-    margin-top: 50px;
-  }
-  p {
-    margin: 10px 0;
-    font-size: 17px;
-  }
-  .orientacao{
-    background-color: #23395d;
-    width: 270px;
-    border-radius: 20px;
-    padding: 1px;
-    margin-top: 30px;
-    margin-left: 43px;
-    box-shadow: 0 4px 10px rgba (0,0,0,0,3);
-  }
-  .conducao, .convocacao {
-    margin-top: 15px;
-    font-style: italic;
-  }
-  .botao{
-    width: 180px;
-    height: 50px;
-    margin: 30px auto;     
-    background: #f7e08a;
-    border-radius: 30px;
-    margin-top: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.botao a{
-    color: #23395d;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
+body {
+  background-color: #213657;
+  font-family: Georgia, serif;
+  padding: 20px;
+}
+
+h1 {
+  color: #FFF3A2;
+  text-align: center;
+  font-family: "Emblema One", serif;
+  margin-bottom: 30px;
+}
+
+/* Cards: dados da reunião e orientações */
+.container,
+.orientacao {
+  width: 100%;
+  background: #23395d;
+  color: #f7e08a;
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+  margin-bottom: 20px;
+}
+
+.container p,
+.orientacao p {
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.container p {
+  margin-bottom: 12px;
+}
+
+.container p:last-child {
+  margin-bottom: 0;
+}
+
+.container strong {
+  color: #FFF3A2;
+}
+
+.conducao {
+  margin-bottom: 12px;
+}
+
+.convocacao {
+  font-weight: bold;
+}
+
+/* Botão Voltar */
+.botao {
+  width: 180px;
+  height: 50px;
+  margin: 30px auto;
+  background: #f7e08a;
+  border-radius: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.botao a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  color: #23395d;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.botao:hover {
+  background: #d9c56e;
+}
+
+.botao a:focus-visible {
+  outline: 3px solid #FFF3A2;
+  outline-offset: 3px;
 }
