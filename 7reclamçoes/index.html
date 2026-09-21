@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <title>Projeto Reclamações</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,18 +20,25 @@
       <h1 class="titulo">RECLAMAÇÕES</h1>
     </header>
 
+    <!-- Bloco adicionado para validação do Teste 3 -->
+    <div class="caixa-ferias">
+      <h2>Aviso de Férias Escolares</h2>
+      <p>As férias escolares terão início no dia 15 de Dezembro.</p>
+    </div>
+
     <form class="formulario-container">
       <div class="card-formulario">
-        <textarea id="texto" class="campo-email" placeholder="Reclame aqui!"></textarea>
+        <textarea id="texto" class="campo-email" placeholder="Reclame aqui!" required></textarea>
       </div>
 
+      <div class="botoes-container">
         <a href="../2inicial/index.html" class="btn-acao">Voltar</a>
-        <a href="#" class="btn-acao">Concluir</a>
-
+        <button type="submit" class="btn-acao">Concluir</button>
       </div>
     </form>
   </div>
-<script src="script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
