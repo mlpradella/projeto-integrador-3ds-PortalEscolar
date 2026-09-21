@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário</title>
+    <title>Calendário - Julho</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="calendario">
 
-    <h1>Calendário</h1>
+    <!-- ID 'titulo-mes' adicionado para o Selenium identificar o mês de Julho -->
+    <h1 id="titulo-mes">Calendário de Julho</h1>
 
     <div class="semana">
         <span>Dom</span>
@@ -23,9 +24,11 @@
     </div>
 
     <div class="dias">
+        <!-- Espaços vazios para alinhar o dia 1 no dia da semana correto -->
+        <div class="vazio"></div>
+        <div class="vazio"></div>
 
-        <div></div>
-        <div></div>
+        <!-- 31 dias com class="dia" para o Selenium contar no teste -->
         <div class="dia">1</div>
         <div class="dia">2</div>
         <div class="dia">3</div>
@@ -61,7 +64,7 @@
         <div class="dia">29</div>
         <div class="dia">30</div>
         <div class="dia">31</div>
-
+   
     </div>
 
     <a href="../2inicial/index.html" class="btn-voltar">Voltar</a>
