@@ -68,9 +68,10 @@ body {
   opacity: 0.8;
 }
 
-.acoes-botoes {
+/* Corrigido o nome para .botoes-container igual ao seu HTML */
+.botoes-container {
   display: flex;
-  gap: 15px;
+  gap: 15px; /* Espaço exato de 15px entre os botões */
   width: 100%;
 }
 
