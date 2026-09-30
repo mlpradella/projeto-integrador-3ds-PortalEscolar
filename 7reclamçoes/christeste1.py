@@ -1,23 +1,25 @@
- 
-{
-  "testes": [
-    {
-      "id": 1,
-      "nome": "Validacao de campo vazio",
-      "descricao": "Deve impedir o envio com o campo de reclamacao vazio",
-      "codigo": "describe('Teste 1: Validacao de campo vazio', () => {\n  it('Deve impedir o envio com o campo de reclamacao vazio', () => {\n    cy.visit('index.html');\n    cy.get('.btn-acao').contains('Concluir').click();\n    cy.get('#texto:invalid').should('exist');\n  });\n});"
-    },
-    {
-      "id": 2,
-      "nome": "Preenchimento e envio",
-      "descricao": "Deve permitir digitar e enviar uma reclamacao",
-      "codigo": "describe('Teste 2: Envios de reclamacao', () => {\n  it('Deve permitir digitar e enviar uma reclamacao', () => {\n    cy.visit('index.html');\n    cy.get('#texto').type('O horario do transporte escolar esta atrasado.').should('have.value', 'O horario do transporte escolar esta atrasado.');\n    cy.get('.btn-acao').contains('Concluir').click();\n  });\n});"
-    },
-    {
-      "id": 3,
-      "nome": "Exibicao do aviso de ferias",
-      "descricao": "Deve exibir a caixa de aviso de ferias escolares na tela",
-      "codigo": "describe('Teste 3: Exibicao do aviso de ferias', () => {\n  it('Deve exibir a caixa de aviso de ferias escolares na tela', () => {\n    cy.visit('index.html');\n    cy.get('.caixa-ferias')\n      .should('be.visible')\n      .and('not.be.empty');\n  });\n});"
-    }
-  ]
-}
+import os
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Chrome()
+
+try:
+    # Obtém o caminho absoluto exato do arquivo HTML no seu Windows
+    caminho_absoluto = os.path.abspath("index.html")
+    driver.get(f"file:///{caminho_absoluto}")
+    
+    # Clica no botão
+    botao = driver.find_element(By.CLASS_NAME, "btn-acao")
+    if "Concluir" in botao.text:
+        botao.click()
+    
+    # Valida se o campo está inválido (vazio)
+    campo_texto = driver.find_element(By.ID, "texto")
+    is_invalid = driver.execute_script("return !arguments[0].checkValidity();", campo_texto)
+    
+    assert is_invalid, "O campo de reclamação deveria estar inválido por estar vazio"
+    print("Teste 1 executado com sucesso!")
+
+finally:
+    driver.quit()
