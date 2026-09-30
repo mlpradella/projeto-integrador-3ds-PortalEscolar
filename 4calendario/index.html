@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendário</title>
+    <!-- LINK PARA O CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <div class="calendario">
 
-    <h1>Calendário</h1>
+    <h1 id="titulo-mes">Calendário de Julho</h1>
 
     <div class="semana">
         <span>Dom</span>
@@ -22,51 +23,293 @@
         <span>Sáb</span>
     </div>
 
-    <div class="dias">
+    <!-- Contêiner dos 31 dias -->
+    <div class="dias" id="container-dias">
+        <div class="vazio"></div>
+        <div class="vazio"></div>
 
-        <div></div>
-        <div></div>
-        <div class="dia">1</div>
-        <div class="dia">2</div>
-        <div class="dia">3</div>
-        <div class="dia">4</div>
-        <div class="dia">5</div>
+        <div class="dia" id="dia-1" onclick="verDetalhesDia(1)"><span>1</span></div>
+        <div class="dia" id="dia-2" onclick="verDetalhesDia(2)"><span>2</span></div>
+        <div class="dia" id="dia-3" onclick="verDetalhesDia(3)"><span>3</span></div>
+        <div class="dia" id="dia-4" onclick="verDetalhesDia(4)"><span>4</span></div>
+        <div class="dia" id="dia-5" onclick="verDetalhesDia(5)"><span>5</span></div>
 
-        <div class="dia">6</div>
-        <div class="dia">7</div>
-        <div class="dia">8</div>
-        <div class="dia">9</div>
-        <div class="dia">10</div>
-        <div class="dia">11</div>
-        <div class="dia">12</div>
+        <div class="dia" id="dia-6" onclick="verDetalhesDia(6)"><span>6</span></div>
+        <div class="dia" id="dia-7" onclick="verDetalhesDia(7)"><span>7</span></div>
+        <div class="dia" id="dia-8" onclick="verDetalhesDia(8)"><span>8</span></div>
+        <div class="dia" id="dia-9" onclick="verDetalhesDia(9)"><span>9</span></div>
+        <div class="dia" id="dia-10" onclick="verDetalhesDia(10)"><span>10</span></div>
+        <div class="dia" id="dia-11" onclick="verDetalhesDia(11)"><span>11</span></div>
+        <div class="dia" id="dia-12" onclick="verDetalhesDia(12)"><span>12</span></div>
 
-        <div class="dia">13</div>
-        <div class="dia">14</div>
-        <div class="dia">15</div>
-        <div class="dia">16</div>
-        <div class="dia">17</div>
-        <div class="dia">18</div>
-        <div class="dia">19</div>
+        <div class="dia" id="dia-13" onclick="verDetalhesDia(13)"><span>13</span></div>
+        <div class="dia" id="dia-14" onclick="verDetalhesDia(14)"><span>14</span></div>
+        <div class="dia" id="dia-15" onclick="verDetalhesDia(15)"><span>15</span></div>
+        <div class="dia" id="dia-16" onclick="verDetalhesDia(16)"><span>16</span></div>
+        <div class="dia" id="dia-17" onclick="verDetalhesDia(17)"><span>17</span></div>
+        <div class="dia" id="dia-18" onclick="verDetalhesDia(18)"><span>18</span></div>
+        <div class="dia" id="dia-19" onclick="verDetalhesDia(19)"><span>19</span></div>
 
-        <div class="dia">20</div>
-        <div class="dia">21</div>
-        <div class="dia">22</div>
-        <div class="dia">23</div>
-        <div class="dia">24</div>
-        <div class="dia">25</div>
-        <div class="dia">26</div>
+        <div class="dia" id="dia-20" onclick="verDetalhesDia(20)"><span>20</span></div>
+        <div class="dia" id="dia-21" onclick="verDetalhesDia(21)"><span>21</span></div>
+        <div class="dia" id="dia-22" onclick="verDetalhesDia(22)"><span>22</span></div>
+        <div class="dia" id="dia-23" onclick="verDetalhesDia(23)"><span>23</span></div>
+        <div class="dia" id="dia-24" onclick="verDetalhesDia(24)"><span>24</span></div>
+        <div class="dia" id="dia-25" onclick="verDetalhesDia(25)"><span>25</span></div>
+        <div class="dia" id="dia-26" onclick="verDetalhesDia(26)"><span>26</span></div>
 
-        <div class="dia">27</div>
-        <div class="dia">28</div>
-        <div class="dia">29</div>
-        <div class="dia">30</div>
-        <div class="dia">31</div>
-
+        <div class="dia" id="dia-27" onclick="verDetalhesDia(27)"><span>27</span></div>
+        <div class="dia" id="dia-28" onclick="verDetalhesDia(28)"><span>28</span></div>
+        <div class="dia" id="dia-29" onclick="verDetalhesDia(29)"><span>29</span></div>
+        <div class="dia" id="dia-30" onclick="verDetalhesDia(30)"><span>30</span></div>
+        <div class="dia" id="dia-31" onclick="verDetalhesDia(31)"><span>31</span></div>
     </div>
 
-    <a href="../2inicial/index.html" class="btn-voltar">Voltar</a>
+    <!-- Botões Principais -->
+    <div class="acoes">
+        <button class="btn-admin" onclick="alternarPainel('criar')">+ Criar Evento</button>
+        <button class="btn-admin" onclick="alternarPainel('remover')">- Remover Evento</button>
+        <a href="../2inicial/index.html" class="btn-voltar" id="btn-voltar">Voltar</a>
+    </div>
+
+    <!-- Painel para Criar Evento -->
+    <div class="painel-admin" id="painel-criar" style="display: none;">
+        <h3>Criar Aviso / Evento</h3>
+        
+        <label for="select-dia-criar">Selecione o Dia:</label>
+        <select id="select-dia-criar" class="select-dias-geral"></select>
+
+        <label for="input-evento">Descrição da Informação:</label>
+        <input type="text" id="input-evento" placeholder="Ex: Prova de História">
+
+        <button onclick="salvarEvento()" class="btn-salvar">Salvar Evento</button>
+    </div>
+
+    <!-- Painel para Remover Evento -->
+    <div class="painel-admin" id="painel-remover" style="display: none;">
+        <h3>Remover Aviso / Evento</h3>
+        
+        <label for="select-dia-remover">Selecione o Dia:</label>
+        <select id="select-dia-remover" class="select-dias-geral" onchange="atualizarListaRemover()"></select>
+
+        <label for="select-evento-remover">Selecione o Evento para Apagar:</label>
+        <select id="select-evento-remover"></select>
+
+        <button onclick="removerEventoPeloPainel()" class="btn-salvar" style="background: #ff4d4d; color: white;">Apagar Evento</button>
+    </div>
 
 </div>
+
+<!-- Modal com os Detalhes ao Clicar no Dia -->
+<div class="modal-bg" id="modal-detalhes" style="display: none;">
+    <div class="modal-conteudo">
+        <h2 id="modal-titulo">Eventos do Dia</h2>
+        <ul id="modal-lista-eventos"></ul>
+        <button onclick="fecharModal()" class="btn-salvar">Fechar</button>
+    </div>
+</div>
+
+<script>
+    let eventosGlobais = {};
+
+    // Preenche os selects de dias (1 a 31)
+    function popularSelectsDias() {
+        const selects = document.querySelectorAll('.select-dias-geral');
+        selects.forEach(select => {
+            select.innerHTML = '';
+            for (let i = 1; i <= 31; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.innerText = `Dia ${i}`;
+                select.appendChild(option);
+            }
+        });
+    }
+
+    // Alterna a exibição dos painéis de Criar e Remover
+    function alternarPainel(tipo) {
+        const painelCriar = document.getElementById('painel-criar');
+        const painelRemover = document.getElementById('painel-remover');
+
+        if (tipo === 'criar') {
+            painelRemover.style.display = 'none';
+            painelCriar.style.display = painelCriar.style.display === 'none' ? 'block' : 'none';
+        } else if (tipo === 'remover') {
+            painelCriar.style.display = 'none';
+            const visivel = painelRemover.style.display === 'block';
+            painelRemover.style.display = visivel ? 'none' : 'block';
+            if (!visivel) {
+                atualizarListaRemover();
+            }
+        }
+    }
+
+    // Atualiza o select de eventos disponíveis para deletar na data escolhida
+    function atualizarListaRemover() {
+        const dia = document.getElementById('select-dia-remover').value;
+        const selectEvento = document.getElementById('select-evento-remover');
+        selectEvento.innerHTML = '';
+
+        const eventosDoDia = eventosGlobais[dia] || eventosGlobais[String(dia)];
+
+        if (eventosDoDia && eventosDoDia.length > 0) {
+            eventosDoDia.forEach((evento, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.innerText = evento;
+                selectEvento.appendChild(option);
+            });
+        } else {
+            const option = document.createElement('option');
+            option.innerText = 'Nenhum evento neste dia';
+            option.value = '-1';
+            selectEvento.appendChild(option);
+        }
+    }
+
+    async function carregarCalendario() {
+        try {
+            const resposta = await fetch('http://localhost:5000/api/calendario');
+            if (resposta.ok) {
+                const dados = await resposta.json();
+                document.getElementById('titulo-mes').innerText = `Calendário de ${dados.mes}`;
+                
+                eventosGlobais = {};
+                if (dados.eventos) {
+                    Object.keys(dados.eventos).forEach(key => {
+                        eventosGlobais[key] = dados.eventos[key];
+                    });
+                }
+            }
+        } catch (erro) {
+            console.log('Servidor offline. Usando apenas memória local.');
+        }
+
+        for (let i = 1; i <= 31; i++) {
+            const divDia = document.getElementById(`dia-${i}`);
+            if (divDia) {
+                let conteudo = `<span>${i}</span>`;
+                const eventosDoDia = eventosGlobais[i] || eventosGlobais[String(i)];
+                
+                if (eventosDoDia && eventosDoDia.length > 0) {
+                    divDia.classList.add('com-evento');
+                    const listaEventos = eventosDoDia
+                        .map(evento => `<small class="descricao-evento">${evento}</small>`)
+                        .join('');
+                    conteudo += listaEventos;
+                } else {
+                    divDia.classList.remove('com-evento');
+                }
+                
+                divDia.innerHTML = conteudo;
+            }
+        }
+        
+        atualizarListaRemover();
+    }
+
+    function verDetalhesDia(dia) {
+        const modal = document.getElementById('modal-detalhes');
+        const titulo = document.getElementById('modal-titulo');
+        const lista = document.getElementById('modal-lista-eventos');
+
+        titulo.innerText = `Informações do Dia ${dia} de Julho`;
+        lista.innerHTML = '';
+
+        const eventosDoDia = eventosGlobais[dia] || eventosGlobais[String(dia)];
+
+        if (eventosDoDia && eventosDoDia.length > 0) {
+            eventosDoDia.forEach((evento, index) => {
+                const li = document.createElement('li');
+                li.style.display = 'flex';
+                li.style.justifyContent = 'space-between';
+                li.style.alignItems = 'center';
+
+                li.innerHTML = `
+                    <span>${evento}</span>
+                    <button onclick="deletarEvento(${dia}, ${index})" style="background: #ff4d4d; color: white; border: none; border-radius: 4px; padding: 2px 8px; cursor: pointer; margin-left: 10px;">X</button>
+                `;
+                lista.appendChild(li);
+            });
+        } else {
+            const li = document.createElement('li');
+            li.innerText = 'Nenhum aviso ou prova cadastrada para este dia.';
+            lista.appendChild(li);
+        }
+
+        modal.style.display = 'flex';
+    }
+
+    function fecharModal() {
+        document.getElementById('modal-detalhes').style.display = 'none';
+    }
+
+    async function salvarEvento() {
+        const dia = document.getElementById('select-dia-criar').value;
+        const titulo = document.getElementById('input-evento').value.trim();
+
+        if (!titulo) {
+            alert('Por favor, digite o nome do evento/prova!');
+            return;
+        }
+
+        if (!eventosGlobais[dia]) {
+            eventosGlobais[dia] = [];
+        }
+        eventosGlobais[dia].push(titulo);
+
+        carregarCalendario();
+        document.getElementById('input-evento').value = '';
+        alert('Evento adicionado com sucesso!');
+
+        try {
+            await fetch('http://localhost:5000/api/calendario/evento', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ dia: parseInt(dia), titulo: titulo })
+            });
+        } catch (erro) {
+            console.log('Servidor offline. Guardado temporariamente.');
+        }
+    }
+
+    async function removerEventoPeloPainel() {
+        const dia = document.getElementById('select-dia-remover').value;
+        const index = parseInt(document.getElementById('select-evento-remover').value);
+
+        if (index === -1 || isNaN(index)) {
+            alert('Não há eventos cadastrados para remover neste dia!');
+            return;
+        }
+
+        await deletarEvento(dia, index);
+        alert('Evento removido com sucesso!');
+    }
+
+    async function deletarEvento(dia, index) {
+        const eventosDoDia = eventosGlobais[dia] || eventosGlobais[String(dia)];
+        
+        if (eventosDoDia) {
+            eventosDoDia.splice(index, 1);
+            
+            verDetalhesDia(dia);
+            carregarCalendario();
+
+            try {
+                await fetch('http://localhost:5000/api/calendario/evento', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ dia: parseInt(dia), index: index })
+                });
+            } catch (erro) {
+                console.log('Servidor offline. Deletado apenas localmente.');
+            }
+        }
+    }
+
+    popularSelectsDias();
+    carregarCalendario();
+</script>
 
 </body>
 </html>

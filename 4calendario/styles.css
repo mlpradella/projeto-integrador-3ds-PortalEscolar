@@ -11,11 +11,13 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 10px;
 }
 
 .calendario {
-    width: 500px;
-    height: 660px;
+    width: 100%;
+    max-width: 450px;
+    min-height: 600px;
     background: #233B66;
     border: 3px solid #FFF3A2;
     border-radius: 20px;
@@ -27,7 +29,7 @@ body {
 h1 {
     color: #FFF3A2;
     text-align: center;
-    font-size: 30px;
+    font-size: 26px;
     margin-bottom: 18px;
 }
 
@@ -44,20 +46,23 @@ h1 {
 .dias {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
+    gap: 6px;
     justify-items: center;
+    width: 100%;
 }
 
 .dia {
-    width: 34px;
-    height: 38px;
+    width: 100%;
+    min-height: 50px;
     background: #F8E68A;
     color: #233B66;
-    border-radius: 10px;
+    border-radius: 8px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    font-size: 16px;
+    padding: 4px;
+    font-size: 13px;
     font-weight: bold;
     cursor: pointer;
     transition: .3s;
@@ -68,41 +73,135 @@ h1 {
     transform: scale(1.05);
 }
 
-/* Espaços vazios do início do mês */
-.dia.vazio {
+.dia.com-evento {
+    border: 2px solid #FFF3A2;
+}
+
+.descricao-evento {
+    font-size: 8px;
+    color: #ffffff;
+    background-color: #172a4d;
+    border-radius: 3px;
+    padding: 2px;
+    margin-top: 2px;
+    text-align: center;
+    word-break: break-word;
+    width: 100%;
+    line-height: 1;
+}
+
+.vazio {
+    width: 100%;
+    min-height: 50px;
     background: transparent;
-    cursor: default;
     pointer-events: none;
 }
 
-.btn-voltar {
-    margin-top: auto; /* Empurra o botão para a parte inferior do card */
-    margin-bottom: 15px;
-    align-self: center;
-    width: 150px;
-    height: 45px;
+.acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.btn-admin, .btn-voltar, .btn-salvar {
     background: #F8E68A;
     color: #233B66;
     border: none;
-    border-radius: 22px;
-    font-size: 18px;
+    border-radius: 20px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: .3s;
-
-    /* Sem sublinhado e texto centralizado */
     text-decoration: none;
+    padding: 10px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.btn-admin:hover, .btn-voltar:hover, .btn-salvar:hover {
+    background: #FFE15A;
+    transform: scale(1.03);
+}
+
+.painel-admin {
+    background: #1d3054;
+    border: 1px solid #FFF3A2;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 15px;
+    color: #FFF3A2;
+}
+
+.painel-admin h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-.btn-voltar:hover {
-    background: #FFE15A;
-    transform: scale(1.05);
+.painel-admin label {
+    display: block;
+    font-size: 12px;
+    margin-top: 8px;
 }
 
-.btn-voltar:active {
-    transform: scale(.96);
+.painel-admin select, .painel-admin input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+}
+
+.btn-salvar {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* Modal */
+.modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-conteudo {
+    background: #233B66;
+    border: 2px solid #FFF3A2;
+    border-radius: 15px;
+    padding: 20px;
+    width: 90%;
+    max-width: 350px;
+    color: #FFF3A2;
+    text-align: center;
+}
+
+.modal-conteudo h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.modal-conteudo ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.modal-conteudo li {
+    background: #1d3054;
+    border: 1px solid #FFF3A2;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #ffffff;
 }
