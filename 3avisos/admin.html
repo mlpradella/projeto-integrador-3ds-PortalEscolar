@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Administrar avisos</title>
+    <style>
+        .card input, .card textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .card button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #f7e08a;
+            color: #23395d;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #mensagem { margin-top: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Administrar avisos</h1>
+
+    <div class="caixas">
+        <div class="card">
+            <h2>Novo aviso</h2>
+            <input type="password" id="senha" placeholder="Senha de administrador">
+            <input type="text" id="titulo" placeholder="Título">
+            <input type="text" id="data" placeholder="Data (ex: 08/08/2026)">
+            <input type="text" id="descricao" placeholder="Descrição curta (opcional)">
+            <textarea id="detalhes" rows="4" placeholder="Detalhes para o 'Ver mais' (opcional)"></textarea>
+            <button id="botao-salvar">Publicar aviso</button>
+            <p id="mensagem"></p>
+        </div>
+
+        <div id="lista" class="caixas"></div>
+    </div>
+
+    <div class="botao">
+        <a href="index.html">Voltar</a>
+    </div>
+
+    <script>
+        const lista = document.getElementById("lista");
+        const mensagem = document.getElementById("mensagem");
+        const campoSenha = document.getElementById("senha");
+
+        function criar(tag, texto) {
+            const el = document.createElement(tag);
+            el.textContent = texto;
+            return el;
+        }
+
+        async function carregarLista() {
+            const resposta = await fetch("/api/avisos");
+            const avisos = await resposta.json();
+            lista.innerHTML = "";
+
+            avisos.forEach(function (aviso) {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.appendChild(criar("h2", aviso.titulo));
+                card.appendChild(criar("p", "Data: " + aviso.data));
+
+                const apagar = criar("button", "Apagar");
+                apagar.addEventListener("click", function () {
+                    apagarAviso(aviso.id);
+                });
+                card.appendChild(apagar);
+
+                lista.appendChild(card);
+            });
+        }
+
+        async function publicar() {
+            const corpo = {
+                titulo: document.getElementById("titulo").value.trim(),
+                data: document.getElementById("data").value.trim(),
+                descricao: document.getElementById("descricao").value.trim(),
+                detalhes: document.getElementById("detalhes").value.trim()
+            };
+
+            const resposta = await fetch("/api/avisos", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-admin-senha": campoSenha.value
+                },
+                body: JSON.stringify(corpo)
+            });
+            const dados = await resposta.json();
+
+            if (resposta.ok) {
+                mensagem.textContent = "Aviso publicado!";
+                document.getElementById("titulo").value = "";
+                document.getElementById("data").value = "";
+                document.getElementById("descricao").value = "";
+                document.getElementById("detalhes").value = "";
+                carregarLista();
+            } else {
+                mensagem.textContent = dados.erro;
+            }
+        }
+
+        async function apagarAviso(id) {
+            if (!confirm("Apagar este aviso?")) return;
+
+            const resposta = await fetch("/api/avisos/" + id, {
+                method: "DELETE",
+                headers: { "x-admin-senha": campoSenha.value }
+            });
+            const dados = await resposta.json();
+
+            if (resposta.ok) {
+                carregarLista();
+            } else {
+                mensagem.textContent = dados.erro;
+            }
+        }
+
+        document.getElementById("botao-salvar").addEventListener("click", publicar);
+        carregarLista();
+    </script>
+</body>
+</html>
