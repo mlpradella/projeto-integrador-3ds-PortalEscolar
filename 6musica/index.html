@@ -28,8 +28,9 @@
                    title="Digite no formato de minutos e segundos. Ex: 03:45" 
                    class="campo-texto">
 
-            <button type="submit" class="botao-enviar">Recomendar</button>
-            <a href="../2inicial/index.html" class="botao-voltar">Voltar</a>
+                   <button type="submit" class="botao-enviar">Recomendar</button>
+                   <a href="lista.html" class="botao-enviar">Ver lista</a>
+                   <a href="../2inicial/index.html" class="botao-voltar">Voltar</a>
         </form>
 
     </div>
@@ -39,33 +40,32 @@
             e.preventDefault();
     
             const dados = {
-                nome: document.querySelector('input[name="musica"]').value,
+                musica: document.querySelector('input[name="musica"]').value,
                 artista: document.querySelector('input[name="artista"]').value,
                 minutagem: document.querySelector('input[name="minutagem"]').value
             };
-    
-            try {
-                const resposta = await fetch('http://localhost:8080/api/musicas', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dados)
-                });
-    
-                if (resposta.ok) {
-                    alert('Música recomendada com sucesso!');
-                    document.querySelector('.formulario').reset(); 
-                } else {
-                    const errosBackend = await resposta.json();
-                    alert('Erro de validação: ' + Object.values(errosBackend).join('\n'));
-                }
+        
+                try {
+                    // LINHA CORRIGIDA PARA A PORTA 8082:
+                    const resposta = await fetch('http://127.0.0.1:8082/recomendar', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dados)
+                    });
+        
+                    if (resposta.ok) {
+                        const resultado = await resposta.json();
+                        alert(resultado.mensagem);
+                        document.querySelector('.formulario').reset(); 
+                    } else {
+                        alert('Houve um erro ao salvar a recomendação no back-end.');
+                    }
             } catch (error) {
-                alert('O servidor Java está desligado ou a URL está incorreta, por favor escreva a requisição novamente.');
-                
-                document.querySelector('.formulario').reset(); 
+                console.error('Erro de conexão:', error);
+                alert('Erro ao conectar com o seu servidor Python (Flask). Certifique-se de que o app.py está rodando no terminal na porta 8082.');
             }
         });
     </script>
-    
 </body>
 
 </html>

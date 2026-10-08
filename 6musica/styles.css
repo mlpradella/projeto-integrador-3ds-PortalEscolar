@@ -115,3 +115,51 @@ body {
 .botao-voltar:active {
     transform: scale(0.98);
 }
+
+/* ===== Página de lista ===== */
+
+.lista-recomendacoes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+}
+
+.lista-recomendacoes li {
+    background-color: #FFF3A2;
+    color: #213657;
+    width: 90%;
+    padding: 14px 20px;
+    border-radius: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+    text-align: center;
+    word-break: break-word;
+}
+
+.lista-recomendacoes li .artista {
+    display: block;
+    font-size: 13px;
+    color: #9b9b9b;
+    margin-top: 4px;
+}
+
+.lista-recomendacoes li .tempo {
+    display: block;
+    font-size: 13px;
+    color: #213657;
+    opacity: 0.7;
+}
+
+.lista-vazia {
+    color: #FFF3A2;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.container .botao-voltar {
+    margin: 0 auto;
+}
