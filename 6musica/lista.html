@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Emblema+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="titulo">
+            <h1>Músicas recomendadas</h1>
+        </div>
+
+        <ul id="lista" class="lista-recomendacoes"></ul>
+
+        <a href="index.html" class="botao-voltar">Voltar</a>
+    </div>
+
+    <script>
+        async function carregar() {
+            const ul = document.getElementById('lista');
+            try {
+                const resposta = await fetch('http://127.0.0.1:8082/recomendacoes');
+                const dados = await resposta.json();
+
+                if (dados.length === 0) {
+                    ul.outerHTML = '<p class="lista-vazia">Nenhuma recomendação ainda.</p>';
+                    return;
+                }
+
+                ul.innerHTML = dados.map(r => `
+                    <li>
+                        ${r.musica}
+                        <span class="artista">${r.artista}</span>
+                        <span class="tempo">${r.minutagem}</span>
+                    </li>
+                `).join('');
+            } catch (erro) {
+                ul.outerHTML = '<p class="lista-vazia">Não foi possível carregar a lista. O servidor está rodando?</p>';
+            }
+        }
+        carregar();
+    </script>
+</body>
+</html>

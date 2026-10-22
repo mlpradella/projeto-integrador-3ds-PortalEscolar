@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Emblema+One&display=swap" rel="stylesheet">
+    <title>Aviso</title>
+</head>
+<body>
+    <h1>Aviso</h1>
+
+    <div class="caixas">
+        <div class="card" id="aviso">
+            <p>Carregando...</p>
+        </div>
+    </div>
+
+    <div class="botao">
+        <a href="index.html">Voltar</a>
+    </div>
+
+    <script>
+        const id = new URLSearchParams(window.location.search).get("id");
+        const caixa = document.getElementById("aviso");
+
+        function criar(tag, texto) {
+            const el = document.createElement(tag);
+            el.textContent = texto;
+            return el;
+        }
+
+        async function carregar() {
+            try {
+                const resposta = await fetch("/api/avisos/" + id);
+                const aviso = await resposta.json();
+                caixa.innerHTML = "";
+
+                if (!resposta.ok) {
+                    caixa.appendChild(criar("p", aviso.erro));
+                    return;
+                }
+
+                caixa.appendChild(criar("h2", aviso.titulo));
+                caixa.appendChild(criar("p", "Data: " + aviso.data));
+                if (aviso.descricao) caixa.appendChild(criar("p", aviso.descricao));
+                if (aviso.detalhes) caixa.appendChild(criar("p", aviso.detalhes));
+            } catch (erro) {
+                caixa.textContent = "Não foi possível carregar o aviso.";
+            }
+        }
+
+        carregar();
+    </script>
+</body>
+</html>
