@@ -1,3 +1,7 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS
+========================================= */
+
 * {
   box-sizing: border-box;
 }
@@ -13,82 +17,95 @@ body {
 body {
   background-color: #243e68;
   color: #ffea72;
-  font-family: 'Poppins', Arial, sans-serif;
+
+  font-family: Arial, sans-serif;
 }
+
+
+/* =========================================
+ CONTAINER
+========================================= */
 
 .container {
   width: 100%;
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   padding: 25px 14px 50px;
 }
 
-.header {
-  margin-bottom: 35px;
-}
 
-h1,
-.titulo {
-  margin: 0 0 10px 0;
+/* =========================================
+ TÍTULO PRINCIPAL
+========================================= */
+
+h1 {
+  margin: 0 0 45px 0;
+
   color: #ffea72;
-  font-family: 'Playfair Display', Georgia, "Times New Roman", serif;
+
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 48px;
   font-style: italic;
   font-weight: bold;
+
   line-height: 0.95;
   text-align: center;
 }
 
-#mensagem-sucesso {
-  display: none;
+
+/* =========================================
+ CARD
+========================================= */
+
+.card {
   width: 100%;
   max-width: 410px;
-  background-color: #ffea72;
-  color: #243e68;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 12px 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
 
-.formulario-container {
-  width: 100%;
-  max-width: 410px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card,
-.card-formulario {
-  width: 100%;
   padding: 28px 22px 30px;
+
   background-color: #29456f;
+
   border-radius: 22px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.18);
+
+  box-shadow:
+      0 8px 15px rgba(0, 0, 0, 0.18);
 }
+
+
+/* =========================================
+ TÍTULO DO CARD
+========================================= */
 
 .card h2 {
   margin: 0 0 25px;
+
   color: #ffea72;
-  font-family: 'Playfair Display', Georgia, "Times New Roman", serif;
+
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 32px;
   font-weight: bold;
   font-style: italic;
+
   line-height: 1.1;
 }
 
+
+/* =========================================
+ TEXTOS
+========================================= */
+
 .card p {
   margin: 12px 0;
+
   color: #ffea72;
+
   font-size: 20px;
   font-weight: normal;
+
   line-height: 1.5;
 }
 
@@ -96,107 +113,81 @@ h1,
   color: #ffea72;
 }
 
-.campo-email {
-  width: 100%;
-  height: 180px;
-  background-color: #f2e394;
-  color: #243e68;
-  border: none;
-  border-radius: 15px;
-  padding: 15px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  resize: none;
-  outline: none;
-}
 
-.campo-email::placeholder {
-  color: #555;
-}
+/* =========================================
+ INFORMAÇÕES
+========================================= */
 
 .informacoes {
   margin-top: 10px;
 }
 
+
+/* =========================================
+ CONDUZIDA POR
+========================================= */
+
 .conduzida {
   margin-top: 35px !important;
+
   color: #ffea72;
+
   text-align: center;
 }
 
-.botoes-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 410px;
-  align-items: center;
-  margin-top: 25px;
-}
 
-.btn-acao {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 14px 20px;
-  background-color: #fce893;
-  color: #243e68;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-style: italic;
-  text-decoration: none;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  box-sizing: border-box;
-}
-
-.btn-acao:hover {
-  background-color: #fff3a6;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
-}
-
-.btn-acao:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+/* =========================================
+ BOTÃO VOLTAR
+========================================= */
 
 .voltar {
   display: block;
+
   width: fit-content;
+
   margin: 35px auto 0;
+
   color: #ffea72;
+
   font-size: 20px;
   font-weight: bold;
+
   text-decoration: underline;
+
   cursor: pointer;
+
   transition: 0.2s;
 }
 
+
+/* Quando passar o mouse */
 .voltar:hover {
   color: #fff3a6;
 }
 
+
+/* Quando clicar */
 .voltar:active {
   transform: scale(0.95);
 }
 
+
+/* =========================================
+ CELULAR PEQUENO
+========================================= */
+
 @media (max-width: 360px) {
-  h1,
-  .titulo {
-    font-size: 42px;
+
+  h1 {
+      font-size: 42px;
   }
 
   .card h2 {
-    font-size: 28px;
+      font-size: 28px;
   }
 
   .card p {
-    font-size: 18px;
+      font-size: 18px;
   }
+
 }
