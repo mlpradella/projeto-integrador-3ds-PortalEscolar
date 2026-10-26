@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 body {
@@ -16,21 +16,22 @@ body {
 
 .calendario {
     width: 100%;
-    max-width: 450px;
-    min-height: 600px;
+    max-width: 600px;
+    height: 95vh; /* Ocupa a quase totalidade da altura da tela */
     background: #233B66;
     border: 3px solid #FFF3A2;
     border-radius: 20px;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 h1 {
     color: #FFF3A2;
     text-align: center;
     font-size: 26px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 .semana {
@@ -39,169 +40,67 @@ h1 {
     text-align: center;
     color: #FFF3A2;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 10px;
 }
 
 .dias {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    justify-items: center;
-    width: 100%;
+    grid-template-rows: repeat(6, 1fr); /* Expande as linhas verticalmente */
+    gap: 8px;
+    flex-grow: 1; /* Preenche o espaço restante do container */
 }
 
-.dia {
+.dia, .vazio {
     width: 100%;
-    min-height: 50px;
-    background: #F8E68A;
-    color: #233B66;
+    height: 100%;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+}
+
+.vazio {
+    background: transparent;
+}
+
+.dia {    background: #F8E68A;
+    color: #233B66;   display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 4px;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
+    transition: 0.2s;
 }
 
 .dia:hover {
     background: #FFE15A;
-    transform: scale(1.05);
-}
-
-.dia.com-evento {
-    border: 2px solid #FFF3A2;
-}
-
-.descricao-evento {
-    font-size: 8px;
-    color: #ffffff;
-    background-color: #172a4d;
-    border-radius: 3px;
-    padding: 2px;
-    margin-top: 2px;
-    text-align: center;
-    word-break: break-word;
-    width: 100%;
-    line-height: 1;
-}
-
-.vazio {
-    width: 100%;
-    min-height: 50px;
-    background: transparent;
-    pointer-events: none;
+    transform: translateY(-2px);
 }
 
 .acoes {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+    display: flex;   justify-content: center;
     margin-top: 15px;
 }
 
-.btn-admin, .btn-voltar, .btn-salvar {
+.btn-voltar {
     background: #F8E68A;
     color: #233B66;
     border: none;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    cursor: pointer;   text-decoration: none;
+    padding: 12px 30px;
+    transition: 0.2s;
 }
 
-.btn-admin:hover, .btn-voltar:hover, .btn-salvar:hover {
-    background: #FFE15A;
-    transform: scale(1.03);
-}
+.btn-voltar:hover {
+    background: #FFE15A;}
 
-.painel-admin {
-    background: #1d3054;
-    border: 1px solid #FFF3A2;
-    border-radius: 10px;
-    padding: 12px;
-    margin-top: 15px;
-    color: #FFF3A2;
-}
-
-.painel-admin h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.painel-admin label {
-    display: block;
-    font-size: 12px;
-    margin-top: 8px;
-}
-
-.painel-admin select, .painel-admin input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border-radius: 6px;
-    border: none;
-    font-size: 14px;
-}
-
-.btn-salvar {
-    width: 100%;
-    margin-top: 12px;
-}
-
-/* Modal */
-.modal-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-conteudo {
-    background: #233B66;
-    border: 2px solid #FFF3A2;
-    border-radius: 15px;
-    padding: 20px;
-    width: 90%;
-    max-width: 350px;
-    color: #FFF3A2;
-    text-align: center;
-}
-
-.modal-conteudo h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-}
-
-.modal-conteudo ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.modal-conteudo li {
-    background: #1d3054;
-    border: 1px solid #FFF3A2;
-    border-radius: 8px;
-    padding: 8px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: #ffffff;
-}
+@media (max-width: 480px) {
+    .calendario {
+        height: 98vh;
+        padding: 12px 8px;
+    }
+    .dias {
+        gap: 5px;
+    }}
