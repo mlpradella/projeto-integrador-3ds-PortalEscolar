@@ -23,7 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .header {
@@ -39,6 +39,15 @@ body {
   color: #F8E68A;
   text-align: center;
   line-height: 1.1;
+}
+
+/* Mensagem de sucesso ao enviar reclamação */
+.mensagem-sucesso {
+  display: none;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 .formulario-container {
@@ -68,10 +77,9 @@ body {
   opacity: 0.8;
 }
 
-/* Corrigido o nome para .botoes-container igual ao seu HTML */
 .botoes-container {
   display: flex;
-  gap: 15px; /* Espaço exato de 15px entre os botões */
+  gap: 15px;
   width: 100%;
 }
 
@@ -99,4 +107,29 @@ body {
 .btn-acao:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+}
+
+/* Área de exibição do histórico de reclamações salvas */
+.historico-container {
+  width: 100%;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.historico-titulo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #F8E68A;
+  margin-bottom: 10px;
+}
+
+.lista-reclamacoes {
+  background-color: rgba(248, 230, 138, 0.15);
+  border: 1px solid rgba(248, 230, 138, 0.3);
+  padding: 15px 20px;
+  border-radius: 15px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  list-style-type: square;
+  word-break: break-word;
 }
