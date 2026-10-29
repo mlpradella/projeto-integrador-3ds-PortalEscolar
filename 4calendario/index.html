@@ -16,20 +16,84 @@
     </div>
 
     <div class="dias" id="container-dias"></div>
-   <div class="acoes">
+
+    <p id="aviso-erro" class="aviso-erro" hidden></p>
+
+    <div class="acoes">
         <a href="../2inicial/index.html" class="btn-voltar">Voltar</a>
     </div>
 </main>
 
+<dialog id="modal-evento">
+    <h2 id="modal-titulo">Novo evento</h2>
+
+    <label for="ev-titulo">Título</label>
+    <input type="text" id="ev-titulo" maxlength="80" placeholder="Ex: Prova de Matemática">
+
+    <label for="ev-tipo">Tipo</label>
+    <select id="ev-tipo">
+        <option value="avaliacao">Avaliação</option>
+        <option value="trabalho">Trabalho</option>
+        <option value="outro">Outro</option>
+    </select>
+
+    <label for="ev-descricao">Descrição</label>
+    <textarea id="ev-descricao" rows="3" maxlength="300" placeholder="Opcional"></textarea>
+
+    <div id="lista-do-dia"></div>
+
+    <div class="modal-botoes">
+        <button type="button" id="btn-salvar">Salvar evento</button>
+        <button type="button" id="btn-cancelar">Fechar</button>
+    </div>
+</dialog>
+
 <script>
+    // Endereço do backend. Se a porta do server.js for outra, mude aqui.
+    const API = 'http://localhost:3000/api/eventos';
+
     const mesAtual = 'Julho';
     const anoAtual = 2026;
     const nomesMeses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+    const numeroMes = nomesMeses.findIndex(m => m.toLowerCase() === mesAtual.toLowerCase());
+
+    let eventos = [];
+    let dataSelecionada = null;
+
+    const modal = document.getElementById('modal-evento');
+    const avisoErro = document.getElementById('aviso-erro');
+
+    function dataISO(dia) {
+        const mes = String(numeroMes + 1).padStart(2, '0');
+        const d = String(dia).padStart(2, '0');
+        return `${anoAtual}-${mes}-${d}`;
+    }
+
+    function mostrarErro(texto) {
+        avisoErro.textContent = texto;
+        avisoErro.hidden = false;
+    }
+
+    function esconderErro() {
+        avisoErro.hidden = true;
+    }
+
+    async function carregarEventos() {
+        try {
+            const resposta = await fetch(API);
+            if (!resposta.ok) throw new Error('Resposta inválida do servidor');
+            eventos = await resposta.json();
+            esconderErro();
+        } catch (erro) {
+            console.error(erro);
+            eventos = [];
+            mostrarErro('Não foi possível conectar ao servidor. Confira se o backend está ligado.');
+        }
+        criarCalendario();
+    }
 
     function criarCalendario() {
-        const container = document.getElementById('container-dias');
-        const numeroMes = nomesMeses.findIndex(m => m.toLowerCase() === mesAtual.toLowerCase());
-        const primeiroDia = new Date(anoAtual, numeroMes, 1).getDay();
+        const container = document.getElementById('container-dias');      const primeiroDia = new Date(anoAtual, numeroMes, 1).getDay();
         const totalDias = new Date(anoAtual, numeroMes + 1, 0).getDate();
 
         container.replaceChildren();
@@ -41,14 +105,131 @@
         }
 
         for (let dia = 1; dia <= totalDias; dia++) {
+            const data = dataISO(dia);
             const divDia = document.createElement('div');
             divDia.className = 'dia';
-            divDia.innerHTML = `<span class="numero-dia">${dia}</span>`;
+            divDia.tabIndex = 0;
+            divDia.setAttribute('role', 'button');
+
+            const numero = document.createElement('span');
+            numero.className = 'numero-dia';
+            numero.textContent = dia;
+            divDia.appendChild(numero);
+
+            // marcações coloridas dos eventos desse dia
+            const doDia = eventos.filter(e => e.data === data);
+            if (doDia.length > 0) {
+                const marcas = document.createElement('div');
+                marcas.className = 'marcas';
+                doDia.forEach(ev => {
+                    const ponto = document.createElement('i');
+                    ponto.className = `ponto ${ev.tipo}`;
+                    ponto.title = ev.titulo;
+                    marcas.appendChild(ponto);
+                });
+                divDia.appendChild(marcas);
+                divDia.setAttribute('aria-label', `Dia ${dia}, ${doDia.length} evento(s)`);
+            }
+
+            divDia.addEventListener('click', () => abrirModal(data, dia));
+            divDia.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    abrirModal(data, dia);
+                }
+            });
             container.appendChild(divDia);
         }
     }
 
-    criarCalendario();
+    function listarEventosDoDia() {
+        const lista = document.getElementById('lista-do-dia');
+        lista.replaceChildren();
+
+        const doDia = eventos.filter(e => e.data === dataSelecionada);
+        if (doDia.length === 0) return;
+
+        const titulo = document.createElement('h3');
+        titulo.textContent = 'Eventos deste dia';
+        lista.appendChild(titulo);
+
+        doDia.forEach(ev => {
+            const linha = document.createElement('div');
+            linha.className = 'linha-evento';
+
+            const texto = document.createElement('span');
+            texto.className = `etiqueta ${ev.tipo}`;
+            texto.textContent = ev.titulo;
+            if (ev.descricao) texto.title = ev.descricao;
+
+            const apagar = document.createElement('button');
+            apagar.type = 'button';
+            apagar.className = 'btn-apagar';
+            apagar.textContent = 'Apagar';
+            apagar.addEventListener('click', () => apagarEvento(ev.id));
+
+            linha.append(texto, apagar);
+            lista.appendChild(linha);
+        });
+    }
+
+    function abrirModal(data, dia) {
+        dataSelecionada = data;
+        document.getElementById('modal-titulo').textContent = `Dia ${dia} de ${mesAtual}`;
+        document.getElementById('ev-titulo').value = '';
+        document.getElementById('ev-tipo').value = 'avaliacao';
+        document.getElementById('ev-descricao').value = '';
+        listarEventosDoDia();
+        modal.showModal();
+        document.getElementById('ev-titulo').focus();
+    }
+
+    async function salvarEvento() {
+        const titulo = document.getElementById('ev-titulo').value.trim();
+        if (!titulo) {
+            alert('Digite um título para o evento.');
+            return;
+        }
+
+        const novo = {
+            titulo,
+            tipo: document.getElementById('ev-tipo').value,
+            descricao: document.getElementById('ev-descricao').value.trim(),
+            data: dataSelecionada
+        };
+
+        try {
+            const resposta = await fetch(API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(novo)
+            });
+            if (!resposta.ok) throw new Error('Falha ao salvar');
+            modal.close();
+            await carregarEventos();
+        } catch (erro) {
+            console.error(erro);
+            alert('Não foi possível salvar. Confira se o servidor está ligado.');
+        }
+    }
+
+    async function apagarEvento(id) {
+        if (!confirm('Apagar este evento?')) return;
+        try {
+            const resposta = await fetch(`${API}/${id}`, { method: 'DELETE' });
+            if (!resposta.ok) throw new Error('Falha ao apagar');
+            await carregarEventos();
+            listarEventosDoDia();
+        } catch (erro) {
+            console.error(erro);
+            alert('Não foi possível apagar o evento.');
+        }
+    }
+
+    document.getElementById('btn-salvar').addEventListener('click', salvarEvento);
+    document.getElementById('btn-cancelar').addEventListener('click', () => modal.close());
+
+    carregarEventos();
 </script>
 
 </body>
